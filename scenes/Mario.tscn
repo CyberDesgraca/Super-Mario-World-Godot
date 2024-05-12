@@ -1,0 +1,231 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://scenes/Mario.gd" type="Script" id=1]
+[ext_resource path="res://assets/Assets Mario/run0.tres" type="Texture" id=2]
+[ext_resource path="res://assets/Assets Mario/mario.png" type="Texture" id=3]
+[ext_resource path="res://assets/Assets Mario/dead1.tres" type="Texture" id=4]
+[ext_resource path="res://assets/Assets Mario/dead2.tres" type="Texture" id=5]
+[ext_resource path="res://assets/Assets Mario/run_big1.tres" type="Texture" id=6]
+[ext_resource path="res://assets/Assets Mario/run_big0.tres" type="Texture" id=7]
+[ext_resource path="res://assets/Assets Mario/jump_big0.tres" type="Texture" id=8]
+[ext_resource path="res://assets/Assets Mario/fall_big0.tres" type="Texture" id=9]
+[ext_resource path="res://assets/Assets Mario/idle_big0.tres" type="Texture" id=10]
+[ext_resource path="res://assets/sounds/smw_lost_a_life.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/smw_coin.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/smw_jump.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/smw_break_block.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/smw_kick.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/smw_power-up.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sounds/smw_pipe.wav" type="AudioStream" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.5, 20 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 248, 40, 16, 20 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 208, 40, 16, 20 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 208, 0, 16, 20 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 328, 0, 16, 20 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "fall_big",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "idle_big",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "jump_big",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 4 ) ],
+"loop": true,
+"name": "run",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "run_big",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=18]
+resource_name = "Dead"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_physics_process"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "die" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -100 ), Vector2( 0, 500 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "GoingDownPipe"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 50 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "flashing"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, true, false, true, false, true ]
+}
+
+[node name="Mario" type="KinematicBody2D"]
+z_index = 2
+collision_layer = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2.125, 2.125 )
+frames = SubResource( 2 )
+animation = "die"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Dead = SubResource( 18 )
+anims/GoingDownPipe = SubResource( 21 )
+anims/RESET = SubResource( 19 )
+anims/flashing = SubResource( 20 )
+
+[node name="Invincibility" type="Timer" parent="."]
+
+[node name="AfterDeath" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = 19.0
+
+[node name="PickCoin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = 4.0
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = 4.0
+
+[node name="BreakBlock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = 4.0
+
+[node name="StompEnemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = 4.0
+
+[node name="PowerUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="PowerDown" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = 4.0
+
+[connection signal="timeout" from="Invincibility" to="." method="_on_Invincibility_timeout"]
+[connection signal="timeout" from="AfterDeath" to="." method="_on_AfterDeath_timeout"]

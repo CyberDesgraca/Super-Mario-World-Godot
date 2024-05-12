@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/music/23 World Clear.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/menu.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/Enjl-Starry Space Background/background_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/Enter.png" type="Texture" id=6]
+[ext_resource path="res://assets/Enjl-Starry Space Background/background_3.png" type="Texture" id=7]
+[ext_resource path="res://assets/Enjl-Starry Space Background/background_4.png" type="Texture" id=8]
+
+[node name="Menu" type="Control"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_left = -3.0
+margin_top = 2.0
+margin_right = 1024.0
+margin_bottom = 601.0
+color = Color( 0, 0.0235294, 0.254902, 1 )
+
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1021.0
+margin_bottom = 597.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1020.0
+margin_bottom = 597.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1019.0
+margin_bottom = 603.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1027.0
+margin_bottom = 599.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_left = 253.0
+margin_top = 209.0
+margin_right = 753.0
+margin_bottom = 415.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+margin_left = 260.0
+margin_top = 486.0
+margin_right = 746.0
+margin_bottom = 684.0
+texture = ExtResource( 6 )
+expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 24.0
+autoplay = true

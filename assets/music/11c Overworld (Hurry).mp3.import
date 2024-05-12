@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/11c Overworld (Hurry).mp3-b0d9a93d9c51bcacc6cef27bc02a13c3.mp3str"
+
+[deps]
+
+source_file="res://assets/music/11c Overworld (Hurry).mp3"
+dest_files=[ "res://.import/11c Overworld (Hurry).mp3-b0d9a93d9c51bcacc6cef27bc02a13c3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

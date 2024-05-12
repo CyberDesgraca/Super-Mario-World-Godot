@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/13c Underground (Hurry).mp3-8131fb1944895fb283aa31539ad6168f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/13c Underground (Hurry).mp3"
+dest_files=[ "res://.import/13c Underground (Hurry).mp3-8131fb1944895fb283aa31539ad6168f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
